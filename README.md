@@ -6,7 +6,7 @@
 <p>
 
 <p align="center">
-        🤗 <a href="https://huggingface.co/collections/Qwen/qwen2-vl-66cee7455501d7126940800d">Hugging Face</a>&nbsp&nbsp | &nbsp&nbsp🤖 <a href="https://modelscope.cn/organization/qwen">ModelScope</a>&nbsp&nbsp | &nbsp&nbsp 📑 <a href="https://qwenlm.github.io/blog/qwen2-vl/">Blog</a> &nbsp&nbsp| &nbsp&nbsp 📑 Paper (is coming)</a> &nbsp&nbsp  </a>
+        🤗 <a href="https://huggingface.co/collections/Qwen/qwen2-vl-66cee7455501d7126940800d">Hugging Face</a>&nbsp&nbsp | &nbsp&nbsp🤖 <a href="https://modelscope.cn/organization/qwen">ModelScope</a>&nbsp&nbsp | &nbsp&nbsp 📑 <a href="https://qwenlm.github.io/blog/qwen2-vl/">Blog</a> &nbsp&nbsp| &nbsp&nbsp 📑 <a href="https://arxiv.org/pdf/2409.12191">Paper</a> &nbsp&nbsp  </a>
 <br>
 🖥️ <a href="https://huggingface.co/spaces/Qwen/Qwen2-VL">Demo</a>&nbsp&nbsp | &nbsp&nbsp💬 <a href="https://github.com/QwenLM/Qwen/blob/main/assets/wechat.png">WeChat (微信)</a>&nbsp&nbsp | &nbsp&nbsp🫨 <a href="https://discord.gg/CV4E9rpNSD">Discord</a>&nbsp&nbsp | &nbsp&nbsp<a href="https://help.aliyun.com/zh/model-studio/developer-reference/qwen-vl-api"> 📑 API</a>&nbsp&nbsp
 </p>
@@ -40,23 +40,26 @@ After a year's relentless efforts, today we are thrilled to release **Qwen2-VL**
 <p>
 
 
-We opensourced Qwen2-VL-2B and Qwen2-VL-7B with Apache 2.0 license, and we release the [API](https://help.aliyun.com/zh/model-studio/developer-reference/qwen-vl-api) of Qwen2-VL-72B! The opensource is integrated to Hugging Face Transformers, vLLM, and other third-party frameworks. Hope you enjoy!
+We have open-sourced Qwen2-VL models, including Qwen2-VL-2B and Qwen2-VL-7B under the Apache 2.0 license, as well as Qwen2-VL-72B under the Qwen license. These models are now integrated with Hugging Face Transformers, vLLM, and other third-party frameworks. We hope you enjoy using them!
+
+
 ## News
+* 2024.09.19: The instruction-tuned [Qwen2-VL-72B model](https://huggingface.co/Qwen/Qwen2-VL-72B-Instruct) and its quantized version [[AWQ](https://huggingface.co/Qwen/Qwen2-VL-72B-Instruct-AWQ), [GPTQ-Int4](https://huggingface.co/Qwen/Qwen2-VL-72B-Instruct-GPTQ-Int4), [GPTQ-Int8](https://huggingface.co/Qwen/Qwen2-VL-72B-Instruct-GPTQ-Int8)] are now available. We have also released the [Qwen2-VL paper](https://arxiv.org/pdf/2409.12191) simultaneously.
 * 2024.08.30: We have released the [Qwen2-VL series]("https://huggingface.co/collections/Qwen/qwen2-vl-66cee7455501d7126940800d). The 2B and 7B models are now available, and the 72B model for opensource is coming soon. For more details, please check our [blog](https://qwenlm.github.io/blog/qwen2-vl/)!
 
 
 ## Performance
 ### Image Benchmarks
 
-| Benchmark | Previous SoTA<br><sup>(Open-source LVLM)<sup> | Claude-3.5 Sonnet | GPT-4o | **Qwen2-VL-72B**<br><sup>(Coming soon) |**Qwen2-VL-7B**<br><sup>([🤗](https://huggingface.co/Qwen/Qwen2-VL-7B-Instruct) [🤖](https://modelscope.cn/models/qwen/Qwen2-VL-7B-Instruct)) |**Qwen2-VL-2B**<br><sup>([🤗](https://huggingface.co/Qwen/Qwen2-VL-2B-Instruct)[🤖](https://modelscope.cn/models/qwen/Qwen2-VL-2B-Instruct)) 
+| Benchmark | Previous SoTA<br><sup>(Open-source LVLM)<sup> | Claude-3.5 Sonnet | GPT-4o | **Qwen2-VL-72B**<br><sup>([🤗](https://huggingface.co/Qwen/Qwen2-VL-72B-Instruct) [🤖](https://modelscope.cn/models/qwen/Qwen2-VL-72B-Instruct) |**Qwen2-VL-7B**<br><sup>([🤗](https://huggingface.co/Qwen/Qwen2-VL-7B-Instruct) [🤖](https://modelscope.cn/models/qwen/Qwen2-VL-7B-Instruct)) |**Qwen2-VL-2B**<br><sup>([🤗](https://huggingface.co/Qwen/Qwen2-VL-2B-Instruct)[🤖](https://modelscope.cn/models/qwen/Qwen2-VL-2B-Instruct)) 
 | :--- | :---: | :---: | :---: | :---: |:---: |:---: |
 | MMMU<sub>val</sub>  | 58.3 | 68.3 | **69.1** | 64.5 | 54.1|41.1
 | DocVQA<sub>test</sub>  | 94.1 | 95.2 | 92.8 | **96.5** | 94.5| 90.1
 | InfoVQA<sub>test</sub>  | 82.0 | - | - | **84.5** | 76.5|65.5
 | ChartQA<sub>test</sub>  | 88.4 | **90.8** | 85.7 | 88.3 |83.0| 73.5
 | TextVQA<sub>val</sub>  | 84.4 | - | - | **85.5** |84.3|79.7
-| OCRBench | 852 | 788 | 736 | **855** |845| 794
-| MTVQA | 17.3 | 25.7 | 27.8 | **32.6** |26.3| 20.0
+| OCRBench | 852 | 788 | 736 | **877** |845| 794
+| MTVQA | 17.3 | 25.7 | 27.8 | **30.9** |25.6| 18.1
 | VCR<sub>en easy</sub>  | 84.67 | 63.85 | 91.55 | **91.93** | 89.70| 81.45
 | VCR<sub>zh easy</sub>  | 22.09 | 1.0| 14.87 | **65.37** | 59.94| 46.16
 | RealWorldQA | 72.2 | 60.1 | 75.4 | **77.8** | 70.1| 62.9
@@ -74,7 +77,7 @@ We opensourced Qwen2-VL-2B and Qwen2-VL-7B with Apache 2.0 license, and we relea
 
 ### Video Benchmarks
 
-| Benchmark |  Previous SoTA<br><sup>(Open-source LVLM)<sup> | Gemini 1.5-Pro | GPT-4o | **Qwen2-VL-72B**<br><sup>(Coming soon) |**Qwen2-VL-7B**<br><sup>([🤗](https://huggingface.co/Qwen/Qwen2-VL-7B-Instruct) [🤖](https://modelscope.cn/models/qwen/Qwen2-VL-7B-Instruct)) |**Qwen2-VL-2B**<br><sup>([🤗](https://huggingface.co/Qwen/Qwen2-VL-2B-Instruct)[🤖](https://modelscope.cn/models/qwen/Qwen2-VL-2B-Instruct)) 
+| Benchmark |  Previous SoTA<br><sup>(Open-source LVLM)<sup> | Gemini 1.5-Pro | GPT-4o | **Qwen2-VL-72B**<br><sup>([🤗](https://huggingface.co/Qwen/Qwen2-VL-72B-Instruct) [🤖](https://modelscope.cn/models/qwen/Qwen2-VL-72B-Instruct)) |**Qwen2-VL-7B**<br><sup>([🤗](https://huggingface.co/Qwen/Qwen2-VL-7B-Instruct) [🤖](https://modelscope.cn/models/qwen/Qwen2-VL-7B-Instruct)) |**Qwen2-VL-2B**<br><sup>([🤗](https://huggingface.co/Qwen/Qwen2-VL-2B-Instruct)[🤖](https://modelscope.cn/models/qwen/Qwen2-VL-2B-Instruct)) 
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
 | MVBench | 69.6 | - | - | **73.6** | 67.0| 63.2 
 | PerceptionTest<sub>test</sub> |  66.9 | - | - | **68.0** | 62.3 |53.9
@@ -132,7 +135,7 @@ SR, GC, TM and EM are short for success rate, goal-condition success, type match
         <td>15.6 </td>
         <td>17.7 </td>
         <td>41.6 </td>
-        <td><b>32.6</b></td>
+        <td><b>30.9</b></td>
     </tr>
     <tr>
         <th align="left">GPT-4o</th>
@@ -183,19 +186,23 @@ Below, we provide simple examples to show how to use Qwen2-VL with 🤖 ModelSco
 
 The code of Qwen2-VL has been in the latest Hugging face transformers and we advise you to build from source with command:
 ```
-pip install git+https://github.com/huggingface/transformers accelerate
+pip install git+https://github.com/huggingface/transformers@21fac7abba2a37fae86106f87fcf9974fd1e3830 accelerate
 ```
 or you might encounter the following error:
 ```
 KeyError: 'qwen2_vl'
 ```
 
+- ⚠️**NOTE**: Current latest version of `transformers` have [a bug](https://github.com/huggingface/transformers/issues/33401) when loading Qwen2-VL config, so you need to install a specific version of transformers as above.
 
 We offer a toolkit to help you handle various types of visual input more conveniently, as if you were using an API. This includes base64, URLs, and interleaved images and videos. You can install it using the following command:
 
 ```bash
-pip install qwen-vl-utils
+# It's highly recommanded to use `[decord]` feature for faster video loading.
+pip install qwen-vl-utils[decord]
 ```
+
+If you are not using Linux, you might not be able to install `decord` from PyPI. In that case, you can use `pip install qwen-vl-utils` which will fall back to using torchvision for video processing. However, you can still [install decord from source](https://github.com/dmlc/decord?tab=readme-ov-file#install-from-source) to get decord used when loading video.
 
 ### Using 🤗  Transformers to Chat
 
@@ -323,14 +330,13 @@ messages = [
                     "file:///path/to/frame3.jpg",
                     "file:///path/to/frame4.jpg",
                 ],
-                "fps": 1.0,
             },
             {"type": "text", "text": "Describe this video."},
         ],
     }
 ]
 
-# Messages containing a video and a text query
+# Messages containing a local video path and a text query
 messages = [
     {
         "role": "user",
@@ -340,6 +346,20 @@ messages = [
                 "video": "file:///path/to/video1.mp4",
                 "max_pixels": 360 * 420,
                 "fps": 1.0,
+            },
+            {"type": "text", "text": "Describe this video."},
+        ],
+    }
+]
+
+# Messages containing a video url and a text query
+messages = [
+    {
+        "role": "user",
+        "content": [
+            {
+                "type": "video",
+                "video": "https://qianwen-res.oss-cn-beijing.aliyuncs.com/Qwen2-VL/space_woaudio.mp4",
             },
             {"type": "text", "text": "Describe this video."},
         ],
@@ -370,6 +390,14 @@ output_text = processor.batch_decode(
 )
 print(output_text)
 ```
+
+Video URL compatibility largely depends on the third-party library version. The details are in the table below. change the backend by `FORCE_QWENVL_VIDEO_READER=torchvision` or `FORCE_QWENVL_VIDEO_READER=decord` if you prefer not to use the default one.
+
+| Backend     | HTTP | HTTPS |
+|-------------|------|-------|
+| torchvision >= 0.19.0 | ✅  | ✅   |
+| torchvision < 0.19.0  | ❌  | ❌   |
+| decord      | ✅  | ❌   |
 </details>
 
 <details>
@@ -480,7 +508,7 @@ Besides, We provide two methods for fine-grained control over the image size inp
 2. Define min_pixels and max_pixels: Images will be resized to maintain their aspect ratio within the range of min_pixels and max_pixels.
 
 ```python
-# min_pixels and max_pixels
+# resized_height and resized_width
 messages = [
     {
         "role": "user",
@@ -495,7 +523,7 @@ messages = [
         ],
     }
 ]
-# resized_height and resized_width
+# min_pixels and max_pixels
 messages = [
     {
         "role": "user",
@@ -994,18 +1022,25 @@ This section reports the generation performance of quantized models (including G
 - MMBench_DEV_EN (Accuracy)
 - MathVista_MINI (Accuracy)
 
-We use [VLMEvalkit](https://github.com/kq-chen/VLMEvalKit/tree/add_qwen2vl) to evaluate all models.
+We use [VLMEvalkit](https://github.com/open-compass/VLMEvalKit) to evaluate all models.
 
 | Model Size | Quantization | MMMU | DocVQA | MMBench | MathVista  |
 | --- | --- | --- | --- | --- | --- |
+| Qwen2-VL-72B-Instruct | BF16<br><sup>([🤗](https://huggingface.co/Qwen/Qwen2-VL-72B-Instruct)[🤖](https://modelscope.cn/models/qwen/Qwen2-VL-72B-Instruct)) | 65.44 | 95.79 | 86.94 | 70.19 |
+|  | GPTQ-Int8<br><sup>([🤗](https://huggingface.co/Qwen/Qwen2-VL-72B-Instruct-GPTQ-Int8)[🤖](https://modelscope.cn/models/qwen/Qwen2-VL-72B-Instruct-GPTQ-Int8)) | 64.56 | 95.84 | 87.03 | 68.90 |
+|  | GPTQ-Int4<br><sup>([🤗](https://huggingface.co/Qwen/Qwen2-VL-72B-Instruct-GPTQ-Int4)[🤖](https://modelscope.cn/models/qwen/Qwen2-VL-72B-Instruct-GPTQ-Int4)) | 64.00 | 95.70 | 86.68 | 69.20 |
+|  | AWQ<br><sup>([🤗](https://huggingface.co/Qwen/Qwen2-VL-72B-Instruct-AWQ)[🤖](https://modelscope.cn/models/qwen/Qwen2-VL-72B-Instruct-AWQ)) | 64.22 | 95.72 | 86.43 | 68.40 |
 | Qwen2-VL-7B-Instruct | BF16<br><sup>([🤗](https://huggingface.co/Qwen/Qwen2-VL-7B-Instruct)[🤖](https://modelscope.cn/models/qwen/Qwen2-VL-7B-Instruct)) | 53.77 | 93.89 | 81.78 | 58.20 |
 |  | GPTQ-Int8<br><sup>([🤗](https://huggingface.co/Qwen/Qwen2-VL-7B-Instruct-GPTQ-Int8)[🤖](https://modelscope.cn/models/qwen/Qwen2-VL-7B-Instruct-GPTQ-Int8)) | 53.00 | 93.94 | 82.38 | 57.90 |
 |  | GPTQ-Int4<br><sup>([🤗](https://huggingface.co/Qwen/Qwen2-VL-7B-Instruct-GPTQ-Int4)[🤖](https://modelscope.cn/models/qwen/Qwen2-VL-7B-Instruct-GPTQ-Int4)) | 52.55 | 93.16 | 81.27 | 60.30 |
 |  | AWQ<br><sup>([🤗](https://huggingface.co/Qwen/Qwen2-VL-7B-Instruct-AWQ)[🤖](https://modelscope.cn/models/qwen/Qwen2-VL-7B-Instruct-AWQ)) | 53.66 | 93.10 | 81.61 | 56.80 |
- Qwen2-VL-2B-Instruct | BF16<br><sup>([🤗](https://huggingface.co/Qwen/Qwen2-VL-2B-Instruct)[🤖](https://modelscope.cn/models/qwen/Qwen2-VL-2B-Instruct)) | 41.88 | 88.34 | 72.07 | 44.40 |
+| Qwen2-VL-2B-Instruct | BF16<br><sup>([🤗](https://huggingface.co/Qwen/Qwen2-VL-2B-Instruct)[🤖](https://modelscope.cn/models/qwen/Qwen2-VL-2B-Instruct)) | 41.88 | 88.34 | 72.07 | 44.40 |
 |  | GPTQ-Int8<br><sup>([🤗](https://huggingface.co/Qwen/Qwen2-VL-2B-Instruct-GPTQ-Int8)[🤖](https://modelscope.cn/models/qwen/Qwen2-VL-2B-Instruct-GPTQ-Int8)) | 41.55 |  88.28 | 71.99 | 44.60 |
 |  | GPTQ-Int4<br><sup>([🤗](https://huggingface.co/Qwen/Qwen2-VL-2B-Instruct-GPTQ-Int4)[🤖](https://modelscope.cn/models/qwen/Qwen2-VL-2B-Instruct-GPTQ-Int4)) | 39.22 | 87.21 | 70.87 | 41.69 |
 |  | AWQ<br><sup>([🤗](https://huggingface.co/Qwen/Qwen2-VL-2B-Instruct-AWQ)[🤖](https://modelscope.cn/models/qwen/Qwen2-VL-2B-Instruct-AWQ)) | 41.33 | 86.96 | 71.64 | 39.90 |
+
+
+
 
 
 
@@ -1026,6 +1061,27 @@ Note:
 
 - We use the batch size of 1 and the least number of GPUs as possible for the evalution.
 - We test the speed and memory of generating 2048 tokens with the input lengths of 1, 6144, 14336, 30720, 63488, and 129024 tokens.
+- 72B (transformers)
+
+| Model | Input Length | Quantization | GPU Num | Speed(tokens/s) | GPU Memory(GB) |
+| --- | --- | --- | --- | --- | --- |
+| Qwen2-VL-72B-Instruct | 1 | BF16 | 2 | 8.90 | 138.74 |
+|  |  | GPTQ-Int8 | 2 | 9.53 | 75.173 |
+|  |  | GPTQ-Int4 | 1 | 11.04 | 42.46 |
+|  |  | AWQ | 1 | 12.00 | 41.98 |
+|  | 6144 | BF16 | 2 | 6.53 | 148.66 |
+|  |  | GPTQ-Int8 | 2 | 6.97 | 85.09 |
+|  |  | GPTQ-Int4 | 1 | 7.62 | 49.05 |
+|  |  | AWQ | 1 | 8.33 | 48.58 |
+|  | 14336 | BF16 | 3 | 4.39 | 165.92 |
+|  |  | GPTQ-Int8 | 2 | 5.04 | 99.31 |
+|  |  | GPTQ-Int4 | 1 | 5.39 | 58.76 |
+|  |  | AWQ | 1 | 5.72 | 58.29 |
+|  | 30720 | BF16 | 4 | 2.93 | 204.33 |
+|  |  | GPTQ-Int8 | 2 | 3.16 | 127.77 |
+|  |  | GPTQ-Int4 | 2 | 3.27 | 85.13 |
+|  |  | AWQ | 2 | 3.39 | 94.65 |
+
 - 7B (transformers)
 
 | Model | Input Length | Quantization | GPU Num | Speed(tokens/s) | GPU Memory(GB) |
@@ -1069,9 +1125,23 @@ Note:
 |  |  | GPTQ-Int4 | 1 | 30.73 | 29.84 |
 |  |  | AWQ | 1 | 31.55 | 29.84 |
 
+
+
 ## Deployment
 
-We recommend using vLLM for fast Qwen2-VL deployment and inference. You can use [this fork](https://github.com/fyabc/vllm/tree/add_qwen2_vl_new) (we are working on merging this PR into vLLM main repository).
+We recommend using vLLM for fast Qwen2-VL deployment and inference. You need to use `vllm>=0.6.1` to enable Qwen2-VL support. You can also use our [official docker image](#-docker).
+
+### Installation
+```bash
+pip install git+https://github.com/huggingface/transformers@21fac7abba2a37fae86106f87fcf9974fd1e3830
+pip install accelerate
+pip install qwen-vl-utils
+# Change to your CUDA version
+CUDA_VERSION=cu121
+pip install 'vllm==0.6.1' --extra-index-url https://download.pytorch.org/whl/${CUDA_VERSION}
+
+```
+### Start an OpenAI API Service
 
 Run the command below to start an OpenAI-compatible API service:
 
@@ -1109,7 +1179,7 @@ client = OpenAI(
 )
 
 chat_response = client.chat.completions.create(
-    model="Qwen2-7B-Instruct",
+    model="Qwen2-VL-7B-Instruct",
     messages=[
         {"role": "system", "content": "You are a helpful assistant."},
         {
@@ -1129,7 +1199,46 @@ chat_response = client.chat.completions.create(
 print("Chat response:", chat_response)
 ```
 
-**NOTE**: Now `vllm.entrypoints.openai.api_server` does not support set `min_pixels` and `max_pixels` in messages (we are working hard on supporting this feature). If you want to limit the resolution, you can set them in model's `preprocessor_config.json`:
+You can also upload base64-encoded local images (see [OpenAI API protocol document](https://platform.openai.com/docs/guides/vision/uploading-base-64-encoded-images) for more details):
+```python
+import base64
+from openai import OpenAI
+# Set OpenAI's API key and API base to use vLLM's API server.
+openai_api_key = "EMPTY"
+openai_api_base = "http://localhost:8000/v1"
+client = OpenAI(
+    api_key=openai_api_key,
+    base_url=openai_api_base,
+)
+image_path = "/path/to/local/image.png"
+with open(image_path, "rb") as f:
+    encoded_image = base64.b64encode(f.read())
+encoded_image_text = encoded_image.decode("utf-8")
+base64_qwen = f"data:image;base64,{encoded_image_text}"
+chat_response = client.chat.completions.create(
+    model="Qwen2-7B-Instruct",
+    messages=[
+        {"role": "system", "content": "You are a helpful assistant."},
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "image_url",
+                    "image_url": {
+                        "url": base64_qwen
+                    },
+                },
+                {"type": "text", "text": "What is the text in the illustrate?"},
+            ],
+        },
+    ],
+)
+print("Chat response:", chat_response)
+```
+
+### Notes
+
+- ⚠️**NOTE**: Now `vllm.entrypoints.openai.api_server` does not support set `min_pixels` and `max_pixels` in messages (we are working hard on supporting this feature). If you want to limit the resolution, you can set them in model's `preprocessor_config.json`:
 
 ```json
 {
@@ -1138,6 +1247,10 @@ print("Chat response:", chat_response)
   ...
 }
 ```
+
+- ⚠️**NOTE**: Now `vllm.entrypoints.openai.api_server` does not support video input yet. We are actively developing on it.
+- ⚠️**NOTE**: If you want to pass multiple images in a single prompt, you need to pass `--limit-mm-per-prompt image=<N>` argument (`N` is max number of images in each prompt) when launching `vllm.entrypoints.openai.api_server`.
+### Inference Locally
 
 You can also use vLLM to inference Qwen2-VL locally:
 
@@ -1176,6 +1289,9 @@ messages = [
         ],
     },
 ]
+# For video input, you can pass following values instead:
+# "type": "video",
+# "video": "<video URL>",
 
 processor = AutoProcessor.from_pretrained(MODEL_PATH)
 prompt = processor.apply_chat_template(
@@ -1479,6 +1595,24 @@ Running on local: http://127.0.0.1:7860/
 
 Copy this link and paste it into your browser to access the web UI, where you can interact with the model by inputting text, uploading images, or using any other provided functionalities.
 
+##### Running the Streaming Video Chat Demo
+An experimental streaming video chat demo is also available in the ``web_demo_streaming`` directory.
+
+To run the streaming video chat demo, use the following command:
+
+```bash
+cd web_demo_streaming/
+python app.py --flash-attn2
+```
+
+If you prefer to run the demo without FlashAttention-2, use the following command:
+```bash
+cd web_demo_streaming/
+python app.py
+```
+
+This demo supports webcam/screen capture as its video input source. To support screen capture video input, we use code snippet from the following hugginface space: [gstaff/gradio-screen-recorder](https://huggingface.co/spaces/gstaff/gradio-screen-recorder/tree/main).
+
 #### Selecting Different Models (Qwen2-VL Series Only)
 
 The demo is configured by default to use the `Qwen/Qwen2-VL-7B-Instruct` model, which is part of the Qwen2-VL series and is well-suited for various vision-language tasks. However, if you want to use a different model within the Qwen2-VL series, you can simply update the `DEFAULT_CKPT_PATH` variable in the script:
@@ -1538,9 +1672,10 @@ If you find our paper and code useful in your research, please consider giving a
 
 
 ```BibTeX
-@article{Qwen2-VL,
-  title={Qwen2-VL},
-  author={Qwen team},
+@article{Qwen2VL,
+  title={Qwen2-VL: Enhancing Vision-Language Model's Perception of the World at Any Resolution},
+  author={Wang, Peng and Bai, Shuai and Tan, Sinan and Wang, Shijie and Fan, Zhihao and Bai, Jinze and Chen, Keqin and Liu, Xuejing and Wang, Jialin and Ge, Wenbin and Fan, Yang and Dang, Kai and Du, Mengfei and Ren, Xuancheng and Men, Rui and Liu, Dayiheng and Zhou, Chang and Zhou, Jingren and Lin, Junyang},
+  journal={arXiv preprint arXiv:2409.12191},
   year={2024}
 }
 
