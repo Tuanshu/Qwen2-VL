@@ -10,12 +10,13 @@ services:
     volumes:
       # - /var/run/docker.sock:/var/run/docker.sock
       - /data/.cache:/data/.cache
+      - ./web_demo_streaming:/data/shared/Qwen/web_demo_streaming
 
     # command: >
     #   python web_demo_mm.py --server-port 80 --server-name 0.0.0.0 -c /data/.cache/huggingface/Qwen2-VL-7B-Instruct
     
     command: >
-      python web_demo_mm.py --server-port 80 --server-name 0.0.0.0 -c /data/.cache/huggingface/Qwen2-VL-2B-Instruct
+      python web_demo_streaming/app.py --server-port 80 --flash-attn2 --server-name 0.0.0.0 -c /data/.cache/huggingface/Qwen2-VL-2B-Instruct
 
       
     # entrypoint:  ["tail", "-f", "/dev/null"]
