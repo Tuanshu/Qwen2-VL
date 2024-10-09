@@ -50,15 +50,23 @@ def _load_model_processor(args):
         device_map = 'cpu'
     else:
         device_map = 'auto'
+        # device_map = 'cuda'
 
     # Check if flash-attn2 flag is enabled and load model accordingly
     if args.flash_attn2:
         model = Qwen2VLForConditionalGeneration.from_pretrained(args.checkpoint_path,
-                                                                torch_dtype='auto',
-                                                                attn_implementation='flash_attention_2',
+                                                                # torch_dtype='auto',
+                                                                torch_dtype=torch.float16,
+                                                                # torch_dtype=torch.bfloat16,
+                                                                attn_implementation='flash_attention_2',    
                                                                 device_map=device_map)
+
     else:
-        model = Qwen2VLForConditionalGeneration.from_pretrained(args.checkpoint_path, device_map=device_map)
+        model = Qwen2VLForConditionalGeneration.from_pretrained(args.checkpoint_path, device_map=device_map, torch_dtype=torch.float16) # , torch_dtype=torch.bfloat16
+
+    # 获取模型的第一个参数的数据类型
+    for name, param in model.named_parameters():
+        print(f"Name: {name}, Data type: {param.dtype}, Device: {param.device}")
 
     processor = AutoProcessor.from_pretrained(args.checkpoint_path)
     return model, processor

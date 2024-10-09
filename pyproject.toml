@@ -15,6 +15,7 @@ xformers = "0.0.27.post2"
 transformers = { git = "https://github.com/huggingface/transformers.git", rev = "19e6e80e10118f855137b90740936c0b11ac397f" }
 accelerate = "*"
 qwen-vl-utils = "*"
+av = "*"
 
 [build-system]
 requires = ["poetry-core"]

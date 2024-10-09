@@ -1,22 +1,27 @@
 services:
   qwen2-vl-demo:
-    image: qwenllm/qwenvl:2-cu121 #qwen2-vl-demo:0.1.0
+    # image: qwenllm/qwenvl:2-cu121 #qwen2-vl-demo:0.1.0
+    image: qwenllm/qwenvl:2-cu121-wrap
+
     container_name: qwen2-vl-demo
     build:
-      dockerfile: ./docker/Dockerfile-cu121
-
+      # dockerfile: ./docker/Dockerfile-cu121
+      dockerfile: ./Dockerfile2
     ports:
       - "6615:80"
     volumes:
       # - /var/run/docker.sock:/var/run/docker.sock
       - /data/.cache:/data/.cache
       - ./web_demo_streaming:/data/shared/Qwen/web_demo_streaming
+      - ./web_demo_mm.py:/data/shared/Qwen/web_demo_mm.py
 
     # command: >
-    #   python web_demo_mm.py --server-port 80 --server-name 0.0.0.0 -c /data/.cache/huggingface/Qwen2-VL-7B-Instruct
-    
+    #   python web_demo_mm.py --server-port 80 --flash-attn2 --server-name 0.0.0.0 -c /data/.cache/huggingface/Qwen2-VL-7B-Instruct
     command: >
-      python web_demo_streaming/app.py --server-port 80 --flash-attn2 --server-name 0.0.0.0 -c /data/.cache/huggingface/Qwen2-VL-2B-Instruct
+      python web_demo_mm.py --server-port 80 --server-name 0.0.0.0 -c /data/.cache/huggingface/Qwen2-VL-7B-Instruct
+    
+    # command: >
+    #   python web_demo_streaming/app.py --server-port 80 --flash-attn2 --server-name 0.0.0.0 -c /data/.cache/huggingface/Qwen2-VL-2B-Instruct
 
       
     # entrypoint:  ["tail", "-f", "/dev/null"]
@@ -30,4 +35,4 @@ services:
             - driver: nvidia
               # count: 4
               capabilities: [gpu]
-              device_ids: ["1"]
+              device_ids: ["0"]
