@@ -7,15 +7,15 @@ import copy
 import re
 from argparse import ArgumentParser
 from threading import Thread
-
+import os
 import gradio as gr
 import torch
 from qwen_vl_utils import process_vision_info
 from transformers import AutoProcessor, Qwen2VLForConditionalGeneration, TextIteratorStreamer
 
 DEFAULT_CKPT_PATH = 'Qwen/Qwen2-VL-7B-Instruct'
-
-
+SERVICE_URL=os.environ['SERVICE_URL']
+PNG_URL=os.environ['PNG_URL']
 def _get_args():
     parser = ArgumentParser()
 
@@ -255,23 +255,23 @@ def _launch_demo(args, model, processor):
         return []
 
     with gr.Blocks() as demo:
-        gr.Markdown("""\
-<p align="center"><img src="https://modelscope.oss-cn-beijing.aliyuncs.com/resource/qwen.png" style="height: 80px"/><p>"""
+        gr.Markdown(f"""\
+<p align="center"><img src="{PNG_URL}" style="height: 80px"/><p>"""
                    )
-        gr.Markdown("""<center><font size=8>Qwen2-VL</center>""")
-        gr.Markdown("""\
-<center><font size=3>This WebUI is based on Qwen2-VL, developed by Alibaba Cloud.</center>""")
-        gr.Markdown("""<center><font size=3>本WebUI基于Qwen2-VL。</center>""")
+        gr.Markdown(f"""<center><font size=8>[CES-IT iCenter]({SERVICE_URL})</center>""")
+#         gr.Markdown("""\
+# <center><font size=3>This WebUI is based on Qwen2-VL, developed by Alibaba Cloud.</center>""")
+#         gr.Markdown("""<center><font size=3>本WebUI基于Qwen2-VL。</center>""")
 
-        chatbot = gr.Chatbot(label='Qwen2-VL', elem_classes='control-height', height=500)
+        chatbot = gr.Chatbot(label='CES-IT iCenter', elem_classes='control-height', height=500)
         query = gr.Textbox(lines=2, label='Input')
         task_history = gr.State([])
 
         with gr.Row():
-            addfile_btn = gr.UploadButton('📁 Upload (上传文件)', file_types=['image', 'video'])
-            submit_btn = gr.Button('🚀 Submit (发送)')
-            regen_btn = gr.Button('🤔️ Regenerate (重试)')
-            empty_bin = gr.Button('🧹 Clear History (清除历史)')
+            addfile_btn = gr.UploadButton('📁 Upload (上傳文件)', file_types=['image', 'video'])
+            submit_btn = gr.Button('🚀 Submit (發送)')
+            regen_btn = gr.Button('🤔️ Regenerate (重試)')
+            empty_bin = gr.Button('🧹 Clear History (清除歷史)')
 
         submit_btn.click(add_text, [chatbot, task_history, query],
                          [chatbot, task_history]).then(predict, [chatbot, task_history], [chatbot], show_progress=True)
@@ -280,12 +280,12 @@ def _launch_demo(args, model, processor):
         regen_btn.click(regenerate, [chatbot, task_history], [chatbot], show_progress=True)
         addfile_btn.upload(add_file, [chatbot, task_history, addfile_btn], [chatbot, task_history], show_progress=True)
 
-        gr.Markdown("""\
-<font size=2>Note: This demo is governed by the original license of Qwen2-VL. \
-We strongly advise users not to knowingly generate or allow others to knowingly generate harmful content, \
-including hate speech, violence, pornography, deception, etc. \
-(注：本演示受Qwen2-VL的许可协议限制。我们强烈建议，用户不应传播及不应允许他人传播以下内容，\
-包括但不限于仇恨言论、暴力、色情、欺诈相关的有害信息。)""")
+#         gr.Markdown("""\
+# <font size=2>Note: This demo is governed by the original license of Qwen2-VL. \
+# We strongly advise users not to knowingly generate or allow others to knowingly generate harmful content, \
+# including hate speech, violence, pornography, deception, etc. \
+# (注：本演示受Qwen2-VL的许可协议限制。我们强烈建议，用户不应传播及不应允许他人传播以下内容，\
+# 包括但不限于仇恨言论、暴力、色情、欺诈相关的有害信息。)""")
 
     demo.queue().launch(
         share=args.share,
