@@ -258,7 +258,9 @@ def _launch_demo(args, model, processor):
         gr.Markdown(f"""\
 <p align="center"><img src="{PNG_URL}" style="height: 80px"/><p>"""
                    )
-        gr.Markdown(f"""<center><font size=8>[CES-IT iCenter]({SERVICE_URL})</center>""")
+        gr.Markdown(f"""<p style='text-align: center; font-size: 48px;'>
+            <a href="{SERVICE_URL}">CES-IT iCenter</a>
+        </p>""")
 #         gr.Markdown("""\
 # <center><font size=3>This WebUI is based on Qwen2-VL, developed by Alibaba Cloud.</center>""")
 #         gr.Markdown("""<center><font size=3>本WebUI基于Qwen2-VL。</center>""")
@@ -268,10 +270,10 @@ def _launch_demo(args, model, processor):
         task_history = gr.State([])
 
         with gr.Row():
-            addfile_btn = gr.UploadButton('📁 Upload (上傳文件)', file_types=['image', 'video'])
-            submit_btn = gr.Button('🚀 Submit (發送)')
-            regen_btn = gr.Button('🤔️ Regenerate (重試)')
-            empty_bin = gr.Button('🧹 Clear History (清除歷史)')
+            addfile_btn = gr.UploadButton('📤 上傳文件', file_types=['image', 'video'])
+            submit_btn = gr.Button('📩 發送')
+            regen_btn = gr.Button('🔄 重試')
+            empty_bin = gr.Button('🗑️ 清除歷史')
 
         submit_btn.click(add_text, [chatbot, task_history, query],
                          [chatbot, task_history]).then(predict, [chatbot, task_history], [chatbot], show_progress=True)
