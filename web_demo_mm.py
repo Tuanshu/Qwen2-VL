@@ -270,7 +270,7 @@ def _launch_demo(args, model, processor):
         task_history = gr.State([])
 
         with gr.Row():
-            addfile_btn = gr.UploadButton('📤 上傳文件', file_types=['image', 'video'])
+            addfile_btn = gr.UploadButton('📤 上傳圖片', file_types=['image', 'video'])
             submit_btn = gr.Button('📩 發送')
             regen_btn = gr.Button('🔄 重試')
             empty_bin = gr.Button('🗑️ 清除歷史')
